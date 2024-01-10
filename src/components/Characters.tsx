@@ -25,10 +25,13 @@ export const Characters = () => {
 
 	return (
 		data && (
-			<ul>
+			<ul className='grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mx-10'>
 				{data?.results.map(
 					({ id, name, image, species, status }: CharacterProps) => (
-						<li key={id}>
+						<li
+							key={id}
+							className='flex flex-col items-center justify-center w-full h-full p-2 bg-blue-700 rounded-md'
+						>
 							<CharactersCard
 								name={name}
 								image={image}
