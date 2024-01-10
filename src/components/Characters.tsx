@@ -11,19 +11,21 @@ export const Characters = () => {
 		return res.json();
 	};
 
-	const { data, isLoading, isError } = useQuery({
+	const { data, isLoading, isSuccess } = useQuery({
 		queryKey: ['characters'],
 		queryFn: getCharacters,
 	});
 
 	if (isLoading) return <p>Loading...</p>;
-	if (isError) return <p>Error</p>;
+	if (!isSuccess) return <p>Error</p>;
 
 	return (
-		<ul>
-			{data?.results.map(({ id, name }: CharacterProps) => (
-				<li key={id}>{name}</li>
-			))}
-		</ul>
+		data && (
+			<ul>
+				{data?.results.map(({ id, name }: CharacterProps) => (
+					<li key={id}>{name}</li>
+				))}
+			</ul>
+		)
 	);
 };
