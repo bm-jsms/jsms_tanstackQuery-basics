@@ -1,8 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
+import { CharactersCard } from './CharactersCard';
 
 interface CharacterProps {
 	id: number;
 	name: string;
+	image: string;
+	species: string;
+	status: string;
 }
 
 export const Characters = () => {
@@ -22,9 +26,18 @@ export const Characters = () => {
 	return (
 		data && (
 			<ul>
-				{data?.results.map(({ id, name }: CharacterProps) => (
-					<li key={id}>{name}</li>
-				))}
+				{data?.results.map(
+					({ id, name, image, species, status }: CharacterProps) => (
+						<li key={id}>
+							<CharactersCard
+								name={name}
+								image={image}
+								species={species}
+								status={status}
+							/>
+						</li>
+					),
+				)}
 			</ul>
 		)
 	);
